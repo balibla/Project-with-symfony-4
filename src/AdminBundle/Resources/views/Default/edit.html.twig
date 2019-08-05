@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h2 class="text-center my-4">Edit an Article</h2>
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_widget(form) }}
+            </div>
+            <div class="col-md-6">
+                <img src="{{ asset( vich_uploader_asset(articles, 'imageFile') ) }}" alt="" width="500" style="position: relative; left: 50%; transform: translateX(-50%); height: auto">
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

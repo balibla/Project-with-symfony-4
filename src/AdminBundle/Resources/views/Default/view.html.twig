@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h2 class="text-center my-4">{{ articles.category.name }}</h2>
+        <div class="card mb-3" style="width: 100%;">
+            <div class="row no-gutters">
+                <div class="col-md-6">
+                    <img src="{{ asset( vich_uploader_asset(articles, 'imageFile') ) }}" class="card-img" alt="..." width="300">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ articles.title }}</h5>
+                        <p class="card-text">{{ articles.description }}</p>
+                        <p class="card-text" style="display: inline-block;"><small class="text-muted">{{ articles.createAt | date('F jS, Y') }}</small></p>
+                        <p class="card-text" style="float: right"><small class="text-muted">{{ app.user.username }}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

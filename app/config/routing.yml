@@ -1,0 +1,17 @@
+userf:
+    resource: "@UserfBundle/Resources/config/routing.yml"
+    prefix:   /
+
+application:
+    resource: "@ApplicationBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+admin:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h2 class="text-center my-3">Register</h2>
+        <hr>
+        <div class="card" style="width: 50%; position: relative; left: 50%;transform: translateX(-50%)">
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="alert alert-success">{{ flashMessage }}</div>
+            {% endfor %}
+            <div class="card-body">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="col-md-10">
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                        <div class="alert alert-success text-center">{{ flashMessage }}</div>
+                    {% endfor %}
+
+                    <h2 class="text-center my-3">Welcome {{ app.user.username }}</h2>
+                    <hr>
+                    <div class="btn btn-primary"><a href="{{ path('createpage') }}" style="color: #FFFFFF">Create A New Article</a></div>
+                    <hr>
+                    <table class="table table-striped">
+                        <thead class="text-center">
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-center">
+                        {% for article in articles %}
+                            <tr>
+                                <td>{{ article.title }}</td>
+                                <td>{{ article.category.name }}</td>
+                                <td>{{ article.createAt| date('l jS \o h:i:s A') }}</td>
+                                <td>
+                                    <button class="btn btn-success" type="submit"><a href="/profile/view/{{ article.id }}" style="color: #FFFFFF">View</a></button>
+                                    <button class="btn btn-warning" type="submit"><a href="/profile/edit/{{ article.id }}" style="color: #FFFFFF">Edit</a></button>
+                                    <button class="btn btn-danger" type="submit"><a href="/profile/delete/{{ article.id }}" style="color: #FFFFFF">Delete</a></button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+        {% else %}
+            <div class="col-md-10">
+                <div class="alert alert-danger">You are not Login
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    </div>
+{% endblock %}

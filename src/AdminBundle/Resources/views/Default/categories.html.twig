@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+        <div class="col-md-10">
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="alert alert-success text-center">{{ flashMessage }}</div>
+            {% endfor %}
+            <h2 class="text-center my-3">Welcome {{ app.user.username }}</h2>
+            <hr>
+            <div class="btn btn-primary"><a href="{{ path('createCatpage') }}" style="color: #FFFFFF">Create A New Category</a></div>
+            <hr>
+            <table class="table table-striped">
+                <thead class="text-center">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">name</th>
+                </tr>
+                </thead>
+                <tbody class="text-center">
+                {% for category in categories %}
+                    <tr>
+                        <td>{{ category.id }}</td>
+                        <td>{{ category.name }}</td>
+                        <td>
+                            <button class="btn btn-danger" type="submit"><a href="/categories/delete={{ category.id }}" style="color: #FFFFFF">Delete</a></button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    {% else %}
+        <div class="col-md-10">
+            <div class="alert alert-danger">You are not Login</div>
+        </div>
+    {% endif %}
+    </div>
+
+{% endblock %}
